@@ -77,18 +77,9 @@ if(require.main == module) {
         .parse(process.argv);
    
     if (program.url) {
-      //console.log(program.url);
-      //load url to program.file
       rest.get(program.url).on('complete', function(data) {
-        //sys.puts(data[0].message); // auto convert to object
-        //util.puts(data);
         fs.writeFileSync('file.html', data);
         var checkJson = checkHtmlFile('file.html', program.checks);
-        /*
-        var htmlfile;
-        fs.writeFileSync(htmlfile, data);
-        var checkJson = checkHtmlFile(htmlfile, program.checks);
-        */
         var outJson = JSON.stringify(checkJson, null, 4);
         console.log(outJson);
       }); 
